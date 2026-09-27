@@ -31,10 +31,8 @@ jobs:
 
       # ❌ PASSO 3: IMPLEMENTE AQUI — Secrets Scanning com Gitleaks
       # Dica: use a action oficial "gitleaks/gitleaks-action@v2"
-      - name: 🔑 Secrets Scanning 
-        uses: gitleaks/gitleaks-action@v2       
-        # SUBSTITUA o run acima pela implementação correta com "uses:"
-
+      - name: 🔑 Secrets Scanning
+        uses: gitleaks/gitleaks-action@v2
       # ❌ PASSO 4: IMPLEMENTE AQUI — SAST com Semgrep
       # Dica: instale com "pip install semgrep" e rode "semgrep scan --config auto --error src/"
       - name: 🔍 SAST - Semgrep
@@ -48,10 +46,9 @@ jobs:
       # e rode "grype dir:. --fail-on medium"
       - name: 📦 SCA - Grype
         run: |
-    npm install --package-lock-only
-    curl -sSfL https://githubusercontent.com | sh -s -- -b /usr/bin
-    grype dir:./ --fail-on medium        # SUBSTITUA pelo comando real de instalação + execução do Grype
-
+          npm install --package-lock-only
+          curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s -- -b /usr/local/bin
+          grype dir:. --fail-on medium
       # ✅ PASSO 6: Já está pronto — Deploy (só roda se tudo passar)
       - name: 🌐 Configurar GitHub Pages
         uses: actions/configure-pages@v4
