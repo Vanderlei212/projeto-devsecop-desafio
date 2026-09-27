@@ -20,7 +20,9 @@ jobs:
     steps:
       # ✅ PASSO 1: Já está pronto — Baixar o código
       - name: 📥 Checkout do Código
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
 
       # ✅ PASSO 2: Já está pronto — Build
       - name: ⚙️ Build
@@ -30,9 +32,9 @@ jobs:
           echo "Build OK!"
 
       # ❌ PASSO 3: IMPLEMENTE AQUI — Secrets Scanning com Gitleaks
-      # Dica: use a action oficial "gitleaks/gitleaks-action@v2"
+      # Dica: use a action oficial "gitleaks/gitleaks-action@v3"
       - name: 🔑 Secrets Scanning
-        uses: gitleaks/gitleaks-action@v2
+        uses: gitleaks/gitleaks-action@v3
       # ❌ PASSO 4: IMPLEMENTE AQUI — SAST com Semgrep
       # Dica: instale com "pip install semgrep" e rode "semgrep scan --config auto --error src/"
       - name: 🔍 SAST - Semgrep
